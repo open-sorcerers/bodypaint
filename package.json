@@ -1,10 +1,8 @@
 {
   "name": "bodypaint",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "emotion x media-queries",
   "main": "bodypaint.js",
-  "module": "bodypaint.mjs",
-  "browser": "bodypaint.umd.js",
   "repository": "//github.com/open-sorcerers/bodypaint",
   "author": "brekk",
   "license": "MIT",
@@ -26,11 +24,13 @@
     "ramda": "^0.27.0"
   },
   "files": [
-    "bodypaint.js",
-    "bodypaint.mjs",
-    "bodypaint.umd.js"
+    "bodypaint.js"
   ],
   "devDependencies": {
+    "@babel/core": "^7.0.0-0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
+    "@babel/plugin-transform-destructuring": "^7.12.1",
+    "@babel/preset-env": "^7.12.11",
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.1",
     "rollup": "^2.35.1"

@@ -7,17 +7,16 @@ export default [
     input: 'src/index.js',
     output: {
       name: 'bodypaint',
-      file: pkg.browser,
+      file: pkg.main,
       format: 'umd'
     },
     plugins: [resolve(), commonjs()]
-  },
-  {
+  }
+  /*
+    {
     input: 'src/index.js',
     external: ['ramda', 'facepaint'],
-    output: [
-      { file: pkg.main, format: 'cjs' },
-      { file: pkg.module, format: 'es' }
-    ]
+    output: [{ file: pkg.main, format: 'cjs' }]
   }
+  */
 ]
