@@ -1,7 +1,3 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
 /**
  * A special placeholder value used to specify "gaps" within curried functions,
  * allowing partial application of any combination of arguments, regardless of
@@ -2260,23 +2256,4 @@ const bodypaint = makePainter({
   implicit: true
 });
 
-exports.GAP = GAP;
-exports.HORIZONTAL_BREAKPOINTS = HORIZONTAL_BREAKPOINTS;
-exports.LEGACY_BREAKPOINTS = LEGACY_BREAKPOINTS;
-exports.VERTICAL_BREAKPOINTS = VERTICAL_BREAKPOINTS;
-exports.__ = __;
-exports.asPx = asPx;
-exports.asRelativeUnit = asRelativeUnit;
-exports.asRem = asRem;
-exports.bodypaint = bodypaint;
-exports.directionalPaint = directionalPaint;
-exports.fillGaps = fillGaps;
-exports.gaplessPlayback = gaplessPlayback;
-exports.makePainter = makePainter;
-exports.maxHeight = maxHeight;
-exports.maxWidth = maxWidth;
-exports.minHeight = minHeight;
-exports.minWidth = minWidth;
-exports.paint = paint;
-exports.vpaint = vpaint;
-exports.withUnit = withUnit;
+export { GAP, HORIZONTAL_BREAKPOINTS, LEGACY_BREAKPOINTS, VERTICAL_BREAKPOINTS, __, asPx, asRelativeUnit, asRem, bodypaint, directionalPaint, fillGaps, gaplessPlayback, makePainter, maxHeight, maxWidth, minHeight, minWidth, paint, vpaint, withUnit };
