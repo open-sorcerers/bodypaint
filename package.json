@@ -1,8 +1,10 @@
 {
   "name": "bodypaint",
-  "version": "0.0.8",
+  "version": "0.0.10",
   "description": "emotion x media-queries",
   "main": "bodypaint.js",
+  "module": "bodypaint.mjs",
+  "browser": "bodypaint.umd.js",
   "repository": "//github.com/open-sorcerers/bodypaint",
   "author": "brekk",
   "license": "MIT",
@@ -24,7 +26,9 @@
     "ramda": "^0.27.0"
   },
   "files": [
-    "bodypaint.js"
+    "bodypaint.js",
+    "bodypaint.mjs",
+    "bodypaint.umd.js"
   ],
   "devDependencies": {
     "@babel/core": "^7.0.0-0",
