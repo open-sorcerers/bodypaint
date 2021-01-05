@@ -16,8 +16,8 @@ import {
   pipe,
   curry,
   map
-} from "ramda"
-import facepaint from "facepaint"
+} from 'ramda'
+import facepaint from 'facepaint'
 
 export const LEGACY_BREAKPOINTS = {
   XT: 320,
@@ -52,24 +52,24 @@ export const HORIZONTAL_BREAKPOINTS = {
   L3: 4000
 }
 export const VERTICAL_BREAKPOINTS = {
-  H0: 160,
-  H1: 320,
-  H2: 480,
-  H3: 640,
-  H4: 800,
-  H5: 960,
-  H6: 1120,
-  H7: 1280,
-  H8: 1440
+  V0: 160,
+  V1: 320,
+  V2: 480,
+  V3: 640,
+  V4: 800,
+  V5: 960,
+  V6: 1120,
+  V7: 1280,
+  V8: 1440
 }
 export const withUnit = curry((suffix, o) => map(z => z + suffix, o))
 
 export const asRelativeUnit = curry((ratio, name, points) =>
   pipe(map(ratio), withUnit(name), Object.freeze)(points)
 )
-export const asPx = asRelativeUnit(I, "px")
+export const asPx = asRelativeUnit(I, 'px')
 export const asRem = curry((base, points) =>
-  asRelativeUnit(z => z / base, "rem")(points)
+  asRelativeUnit(z => z / base, 'rem')(points)
 )
 
 const media = curry((y, z) => `@media(${y}: ${z})`)
@@ -77,7 +77,7 @@ export const minWidth = media(`min-width`)
 export const maxWidth = media(`max-width`)
 export const maxHeight = media(`max-height`)
 export const minHeight = media(`min-height`)
-export const GAP = "%GAP%"
+export const GAP = '%GAP%'
 export const __ = GAP
 
 export const fillGaps = curry((points, xxx) =>
@@ -103,17 +103,22 @@ export const fillGaps = curry((points, xxx) =>
   )(xxx)
 )
 
-export const directionalPaint = curry((useHeight, useMin, baseFontSize, xxx) =>
-  pipe(
-    asRem(baseFontSize),
-    map(
-      useHeight
-      ? useMin ? minHeight : minWidth
-      : useMin ? minWidth : maxWidth
-    ),
-    values,
-    facepaint
-  )(xxx)
+export const directionalPaint = curry(
+  (useHeight, useMin, baseFontSize, xxx) =>
+    pipe(
+      asRem(baseFontSize),
+      map(
+        useHeight
+          ? useMin
+            ? minHeight
+            : minWidth
+          : useMin
+          ? minWidth
+          : maxWidth
+      ),
+      values,
+      facepaint
+    )(xxx)
 )
 
 export const paint = directionalPaint(false)
@@ -121,7 +126,10 @@ export const vpaint = directionalPaint(true)
 
 const orderedKeyReduction = reduce(
   (agg, [kk, vv, doStuff]) =>
-    mergeRight(agg, doStuff ? { [kk]: pipe(values)(vv) } : { [kk]: vv }),
+    mergeRight(
+      agg,
+      doStuff ? { [kk]: pipe(values)(vv) } : { [kk]: vv }
+    ),
   {}
 )
 const makeBaseFromPattern = pipe(
@@ -185,7 +193,12 @@ export const makePainter = ({
   implicit
 }) => {
   const rawPoints = Object.freeze(points)
-  const painter = directionalPaint(useHeight, useMin, baseFontSize, rawPoints)
+  const painter = directionalPaint(
+    useHeight,
+    useMin,
+    baseFontSize,
+    rawPoints
+  )
   return pipe(
     implicit ? gaplessPlayback(rawPoints) : I,
     map(fillGaps(rawPoints)),
@@ -194,7 +207,6 @@ export const makePainter = ({
 }
 
 export const bodypaint = makePainter({
-  useHeight: false,
   useMin: true,
   baseFontSize: 16,
   points: HORIZONTAL_BREAKPOINTS,
